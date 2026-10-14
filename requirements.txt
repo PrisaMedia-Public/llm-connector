@@ -1,0 +1,21 @@
+# Instala solo lo que necesites. Cada proveedor es opcional.
+# Para instalar todo de golpe: pip install -r requirements.txt
+
+# OpenAI
+openai
+
+# Anthropic
+anthropic
+
+# Amazon Bedrock
+boto3
+
+# Google Vertex AI / Model Garden
+google-genai
+google-auth
+google-api-core
+
+# Capa de generación (opcional): conteo de tokens exacto y chunking avanzado.
+# Sin estas, el pipeline usa fallbacks (aprox. por caracteres / por párrafos).
+tiktoken
+langchain-text-splitters

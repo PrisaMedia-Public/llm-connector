@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-engines"
+version = "1.1.0"
+description = "Conectores homogéneos multi-proveedor para LLMs (OpenAI, Anthropic, Amazon Bedrock, Google Vertex AI) con un pipeline de generación (reglas, tokens, chunking) sobre una interfaz común."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "PRISA Media" }]
+keywords = ["llm", "openai", "anthropic", "bedrock", "gemini", "vertex-ai", "wrapper", "connector"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+# Dependencias mínimas del núcleo. Cada proveedor es opcional (ver [project.optional-dependencies]).
+dependencies = []
+
+[project.optional-dependencies]
+openai = ["openai"]
+anthropic = ["anthropic"]
+bedrock = ["boto3"]
+gemini = ["google-genai", "google-auth", "google-api-core"]
+# Capa de generación (opcional): conteo de tokens exacto y chunking avanzado.
+# Sin estos extras, el pipeline usa fallbacks (aprox. por caracteres / por párrafos).
+tokens = ["tiktoken"]
+chunking = ["langchain-text-splitters"]
+generation = ["tiktoken", "langchain-text-splitters"]
+all = ["openai", "anthropic", "boto3", "google-genai", "google-auth", "google-api-core", "tiktoken", "langchain-text-splitters"]
+dev = ["pytest"]
+
+[project.urls]
+Homepage = "https://github.com/your-org/llm-engines"
+Repository = "https://github.com/your-org/llm-engines"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
